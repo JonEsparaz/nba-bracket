@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@-webkit-keyframes flyin {
+  to { 
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@keyframes flyin {
+  to { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(720deg); }
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(720deg);}
+}
+
+
+.Bubble {
+  -webkit-animation: spin 2s forwards;
+  -webkit-animation-delay: 0.5s;
+  animation: spin 2s forwards;
+  animation-delay: 0.5s;
   color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
-.App-link {
-  color: #61dafb;
+.rule1 {
+  animation: flyin 1.2s ease forwards;
+  -webkit-animation: flyin 1.2s ease forwards;
+  opacity: 0;
+  transform: scale(2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rule2 {
+  animation: flyin 1.2s ease forwards;
+  -webkit-animation: flyin 1.2s ease forwards;
+  animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+  opacity: 0;
+  transform: scale(2);
+}
+
+.rule3 {
+  animation: flyin 1.2s ease forwards;
+  -webkit-animation: flyin 1.2s ease forwards;
+  animation-delay: 2s;
+  -webkit-animation-delay: 2s;
+  opacity: 0;
+  transform: scale(2);
+}
+
+.rule4 {
+  animation: flyin 1.2s ease forwards;
+  -webkit-animation: flyin 1.2s ease forwards;
+  animation-delay: 3s;
+  -webkit-animation-delay: 3s;
+  opacity: 0;
+  transform: scale(2);
+}
+
+.rule5 {
+  animation: flyin 1.2s ease forwards;
+  -webkit-animation: flyin 1.2s ease forwards;
+  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+  opacity: 0;
+  transform: scale(2);
 }
