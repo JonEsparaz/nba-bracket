@@ -15,6 +15,19 @@ export default function Picks() {
     const [allSeries, setAllSeries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [locked, setLocked] = useState(false);
+
+    useEffect(() => {
+        async function query() {
+            try {
+                const data = await db.collection('lock').doc('lock').get();
+                setLocked(data.data().locked);
+            } catch (e) {
+                console.debug(e)
+            }
+        }
+        query();
+    }, [])
 
     useEffect(() => {
         async function query() {
@@ -176,7 +189,8 @@ export default function Picks() {
                             })}
                         </tbody>
                     </table>
-                    <button className="Save" onClick={submit}>SAVE{saved ? 'D' : ''}<span role="img" aria-labelledby="checkmark">{saved ? '✅' : ''}</span></button>
+                    {locked ? <div>Submissions are locked until the next round</div> : null}
+                    <button disabled={locked} className="Save" onClick={submit}>SAVE{saved ? 'D' : ''}<span role="img" aria-labelledby="checkmark">{saved ? '✅' : ''}</span></button>
                 </div>
             );
         case 'score':
