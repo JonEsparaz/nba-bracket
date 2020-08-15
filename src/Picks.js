@@ -31,7 +31,8 @@ export default function Picks() {
                 setSeries(series);
                 try {
                     const data = await db.collection('picks').doc(auth.currentUser.uid).get();
-                    setPicks(prevState => { return { ...prevState, ...data.data().picks } });
+                    if (data.data())
+                        setPicks(prevState => { return { ...prevState, ...data.data().picks } });
                 } catch (e) {
                     console.debug(e)
                 }
@@ -179,8 +180,19 @@ export default function Picks() {
                 </div>
             );
         case 'score':
-            if (results.length === 0) {
-                return null
+            if (results.length === 1 && !results[0].picks) {
+                return (
+                    <div className="Container">
+                        <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
+                        <div className="Menu" style={{ marginBottom: '12px' }} >
+                            <button className={mode === 'picks' ? "Selected" : ""} onClick={() => setMode('picks')}>Make Picks</button>
+                            <button className={mode === 'score' ? "Selected" : ""} onClick={() => setMode('score')}>Check Results</button>
+                            <button onClick={() => auth.signOut()}>Log Out<ExitToAppIcon style={{ marginLeft: 6 }} /></button>
+                        </div>
+
+                        <div>no picks yet...</div>
+                    </div>
+                )
             }
             return (
                 <div className="Container">
@@ -214,11 +226,6 @@ export default function Picks() {
                                         .sort((a, b) => a.teams[0].seed - b.teams[0].seed)
                                         .sort((a, b) => a.conference.localeCompare(b.conference))
                                         .map((data, index) => {
-
-                                            if (!account.picks[data.id]) {
-                                                return null
-                                            }
-
                                             const test = checkIfCorrect(data, account.picks[data.id].name, account.picks[data.id].games);
                                             return (
                                                 <td className={!data.winner ? 'Unknown' : test === 0 ? 'Wrong' : test === 1 ? 'Ok' : 'Correct'} style={{ border: '1px solid black' }} key={index}>
