@@ -226,6 +226,10 @@ export default function Picks() {
                                         .sort((a, b) => a.teams[0].seed - b.teams[0].seed)
                                         .sort((a, b) => a.conference.localeCompare(b.conference))
                                         .map((data, index) => {
+                                            if (!account.picks[data.id]) {
+                                                return null
+                                            }
+
                                             const test = checkIfCorrect(data, account.picks[data.id].name, account.picks[data.id].games);
                                             return (
                                                 <td className={!data.winner ? 'Unknown' : test === 0 ? 'Wrong' : test === 1 ? 'Ok' : 'Correct'} style={{ border: '1px solid black' }} key={index}>
