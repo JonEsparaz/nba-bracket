@@ -227,7 +227,7 @@ export default function Picks() {
                                         .sort((a, b) => a.conference.localeCompare(b.conference))
                                         .map((data, index) => {
                                             if (!account.picks[data.id]) {
-                                                return <td />
+                                                return <td style={{ border: '1px solid black' }} key={index} />
                                             }
 
                                             const test = checkIfCorrect(data, account.picks[data.id].name, account.picks[data.id].games);
