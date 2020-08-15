@@ -9,7 +9,7 @@ const auth = firebase.auth();
 export default function Picks() {
     const [round, setRound] = useState(1);
     const [series, setSeries] = useState([]);
-    const [picks, setPicks] = useState();
+    const [picks, setPicks] = useState({});
     const [mode, setMode] = useState('picks');
     const [results, setResults] = useState([]);
     const [allSeries, setAllSeries] = useState([]);
@@ -21,21 +21,20 @@ export default function Picks() {
             setLoading(true);
             try {
                 const series = [];
-                const picks = {};
+                const p = {};
                 const data = await db.collection('series').where('round', '==', round).get();
                 data.forEach(i => {
                     series.push({ ...i.data(), id: i.id })
-                    picks[i.id] = { name: i.data().teams[0].name, games: 4 };
+                    p[i.id] = { name: i.data().teams[0].name, games: 4 };
                 })
-                setPicks(picks);
+                setPicks(p);
                 setSeries(series);
-            } catch (e) {
-                console.debug(e)
-            }
-
-            try {
-                const data = await db.collection('picks').doc(auth.currentUser.uid).get();
-                setPicks(data.data().picks);
+                try {
+                    const data = await db.collection('picks').doc(auth.currentUser.uid).get();
+                    setPicks(prevState => { return { ...prevState, ...data.data().picks } });
+                } catch (e) {
+                    console.debug(e)
+                }
             } catch (e) {
                 console.debug(e)
             }
@@ -104,6 +103,10 @@ export default function Picks() {
         allSeries.forEach(series => {
             const data = account.picks[series.id];
 
+            if (!data) {
+                return 0;
+            }
+
             if (data.games === series.games && data.name === series.winner) {
                 score += 2
             } else if (data.name === series.winner) {
@@ -115,7 +118,7 @@ export default function Picks() {
 
     const showSavedIcon = () => {
         setSaved(true);
-        setTimeout(() => setSaved(false), 5000);
+        setTimeout(() => setSaved(false), 3000);
     }
 
     const submit = async () => {
@@ -211,6 +214,11 @@ export default function Picks() {
                                         .sort((a, b) => a.teams[0].seed - b.teams[0].seed)
                                         .sort((a, b) => a.conference.localeCompare(b.conference))
                                         .map((data, index) => {
+
+                                            if (!account.picks[data.id]) {
+                                                return null
+                                            }
+
                                             const test = checkIfCorrect(data, account.picks[data.id].name, account.picks[data.id].games);
                                             return (
                                                 <td className={!data.winner ? 'Unknown' : test === 0 ? 'Wrong' : test === 1 ? 'Ok' : 'Correct'} style={{ border: '1px solid black' }} key={index}>
