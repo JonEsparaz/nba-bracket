@@ -22,6 +22,13 @@
   to {transform:rotate(720deg);}
 }
 
+@media (min-width: 768px) {
+  .Rules {
+    width: 15vw;
+    margin-left: 40vw;
+    margin-bottom: 32px;
+  }
+}
 
 .Bubble {
   -webkit-animation: spin 2s forwards;

@@ -8,6 +8,7 @@ const uiConfig = {
   signInFlow: 'popup',
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
     signInSuccessWithAuthResult: () => false,
@@ -20,8 +21,8 @@ function App() {
 
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => setSignedIn(!!user))
-    return unregisterAuthObserver;
-  }, [])
+    return () => unregisterAuthObserver();
+  });
 
   if (!signedIn)
     return (
@@ -29,7 +30,7 @@ function App() {
         <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
         <div className="Bubble">Bubble Edition</div>
         <div>Rules:</div>
-        <ul style={{ width: '15vw', marginLeft: '40vw', maringBottom: '32px' }} >
+        <ul className="Rules" >
           <li className="rule1" style={{ height: 24 }}>No cheating</li>
           <li className="rule2" style={{ height: 24 }}>You must pick the Raptors</li>
           <li className="rule3" style={{ height: 24 }}>Winner buys ice cream <span role="img" aria-labelledby="ice cream">🍦</span></li>
