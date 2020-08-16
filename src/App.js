@@ -27,7 +27,7 @@ function App() {
   if (!signedIn)
     return (
       <div style={{ textAlign: 'center' }}>
-        <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
+        <h1>Esparaz NBA Playoff Bracket 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
         <div className="Bubble">Bubble Edition</div>
         <div>Rules:</div>
         <ul className="Rules" >

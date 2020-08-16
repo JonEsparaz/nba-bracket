@@ -152,7 +152,7 @@ export default function Picks() {
         case 'picks':
             return (
                 <div className="Container">
-                    <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
+                    <h1>Esparaz NBA Playoff Bracket 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
                     <div className="Menu" >
                         <button className={mode === 'picks' ? "Selected" : ""} onClick={() => setMode('picks')}>Make Picks</button>
                         <button className={mode === 'score' ? "Selected" : ""} onClick={() => setMode('score')}>Check Results</button>
@@ -197,7 +197,7 @@ export default function Picks() {
             if (results.length === 1 && !results[0].picks) {
                 return (
                     <div className="Container">
-                        <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
+                        <h1>Esparaz NBA Playoff Bracket 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
                         <div className="Menu" style={{ marginBottom: '12px' }} >
                             <button className={mode === 'picks' ? "Selected" : ""} onClick={() => setMode('picks')}>Make Picks</button>
                             <button className={mode === 'score' ? "Selected" : ""} onClick={() => setMode('score')}>Check Results</button>
@@ -210,7 +210,7 @@ export default function Picks() {
             }
             return (
                 <div className="Container">
-                    <h1>Esparaz NBA Playoff Backet 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
+                    <h1>Esparaz NBA Playoff Bracket 2020 <span role="img" aria-labelledby="basketball">🏀</span></h1>
                     <div className="Menu" style={{ marginBottom: '12px' }} >
                         <button className={mode === 'picks' ? "Selected" : ""} onClick={() => setMode('picks')}>Make Picks</button>
                         <button className={mode === 'score' ? "Selected" : ""} onClick={() => setMode('score')}>Check Results</button>
