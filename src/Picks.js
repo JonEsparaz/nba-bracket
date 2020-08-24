@@ -15,19 +15,7 @@ export default function Picks() {
     const [allSeries, setAllSeries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [saved, setSaved] = useState(false);
-    const [locked, setLocked] = useState(false);
-
-    useEffect(() => {
-        async function query() {
-            try {
-                const data = await db.collection('lock').doc('lock').get();
-                setLocked(data.data().locked);
-            } catch (e) {
-                console.debug(e)
-            }
-        }
-        query();
-    }, [])
+    const locked = [1];
 
     useEffect(() => {
         async function query() {
@@ -189,8 +177,8 @@ export default function Picks() {
                             })}
                         </tbody>
                     </table>
-                    {locked ? <div>Submissions are locked until the next round</div> : null}
-                    <button disabled={locked} className="Save" onClick={submit}>SAVE{saved ? 'D' : ''}<span role="img" aria-labelledby="checkmark">{saved ? '✅' : ''}</span></button>
+                    {locked.includes(round) ? <div>Submissions are locked</div> : null}
+                    <button disabled={locked.includes(round)} className="Save" onClick={submit}>SAVE{saved ? 'D' : ''}<span role="img" aria-labelledby="checkmark">{saved ? '✅' : ''}</span></button>
                 </div>
             );
         case 'score':
@@ -222,9 +210,9 @@ export default function Picks() {
                                 <th style={{ border: '1px solid black' }}>Score</th>
                                 <th style={{ border: '1px solid black' }}>Name</th>
                                 {allSeries
-                                    .sort((a, b) => b.round - a.round)
                                     .sort((a, b) => a.teams[0].seed - b.teams[0].seed)
                                     .sort((a, b) => a.conference.localeCompare(b.conference))
+                                    .sort((a, b) => b.round - a.round)
                                     .map((data, index) => {
                                         return <th style={{ border: '1px solid black' }} key={index}>
                                             {data.teams[0].name} vs {data.teams[1].name}
@@ -236,9 +224,9 @@ export default function Picks() {
                                     <td style={{ border: '1px solid black' }}>{calculateScore(account)}</td>
                                     <td style={{ border: '1px solid black' }}>{account.name}</td>
                                     {allSeries
-                                        .sort((a, b) => b.round - a.round)
                                         .sort((a, b) => a.teams[0].seed - b.teams[0].seed)
                                         .sort((a, b) => a.conference.localeCompare(b.conference))
+                                        .sort((a, b) => b.round - a.round)
                                         .map((data, index) => {
                                             if (!account.picks[data.id]) {
                                                 return <td style={{ border: '1px solid black' }} key={index} />
