@@ -160,13 +160,13 @@ export default function Picks() {
                                     <td style={{ border: '1px solid black', width: 20, textAlign: 'center' }}>vs</td>
                                     <td style={{ border: '1px solid black', textAlign: 'center' }}>{data.teams[1].seed} {data.teams[1].city} {data.teams[1].name}</td>
                                     <td style={{ border: '1px solid black', textAlign: 'center' }}>
-                                        <select value={picks[data.id].name} onChange={(e) => handleTeamChange(e.target.value, data.id)} >
+                                        <select disabled={Boolean(data.locked)} value={picks[data.id].name} onChange={(e) => handleTeamChange(e.target.value, data.id)} >
                                             <option value={data.teams[0].name}>{data.teams[0].name}</option>
                                             <option value={data.teams[1].name}>{data.teams[1].name}</option>
                                         </select>
                                     </td>
                                     <td style={{ border: '1px solid black', textAlign: 'center' }}>
-                                        <select value={picks[data.id].games} onChange={(e) => handleGamesChange(e.target.value, data.id)} >
+                                        <select disabled={Boolean(data.locked)} value={picks[data.id].games} onChange={(e) => handleGamesChange(e.target.value, data.id)} >
                                             <option value={4}>4</option>
                                             <option value={5}>5</option>
                                             <option value={6}>6</option>
