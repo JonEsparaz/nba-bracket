@@ -15,7 +15,7 @@ export default function Picks() {
     const [allSeries, setAllSeries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [saved, setSaved] = useState(false);
-    const locked = [1];
+    const locked = [1, 2, 3, 4];
 
     useEffect(() => {
         async function query() {
