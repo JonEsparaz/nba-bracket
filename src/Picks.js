@@ -15,7 +15,21 @@ export default function Picks() {
     const [allSeries, setAllSeries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [saved, setSaved] = useState(false);
-    const locked = [1, 2, 3, 4];
+    const [locked, setLocked] = useState([]);
+
+    useEffect(() => {
+        async function query() {
+            setLoading(true);
+            try {
+                const data = await db.collection('lock').doc('lock').get();
+                setLocked(data.data().lockedRounds)
+            } catch (e) {
+                console.debug(e)
+            }
+            setLoading(false);
+        }
+        query();
+    }, [])
 
     useEffect(() => {
         async function query() {
