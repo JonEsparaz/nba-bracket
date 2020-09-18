@@ -1,3 +1,5 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JonEsparaz/nba-bracket/Node.js%20CI)
+
 This is the result of my Friday evening boredom. 
 
 For years the Esparaz family NBA Playoff bracket has been done on an Excel spreadsheet.
