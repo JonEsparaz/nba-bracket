@@ -228,8 +228,8 @@ export default function Picks() {
                                     .sort((a, b) => a.conference.localeCompare(b.conference))
                                     .sort((a, b) => b.round - a.round)
                                     .map((data, index) => {
-                                        return <th style={{ border: '1px solid black' }} key={index}>
-                                            {data.teams[0].name} vs {data.teams[1].name}
+                                        return <th style={{ border: '1px solid black' }} key={index} >
+                                            {data.round === 4 ? '🏆' : ''}{data.teams[0].name} vs {data.teams[1].name}
                                         </th>
                                     })}
                             </tr>
