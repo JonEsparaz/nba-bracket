@@ -1,98 +1,98 @@
 @media (max-width: 768px) {
-    .Container {
-        width: 100vw;
-        text-align: center;
-    }
+  .Container {
+    width: 100vw;
+    text-align: center;
+  }
 }
 
 @media (min-width: 768px) {
-    .Container {
-        width: 70vw;
-        margin-left: 15vw;
-    }
+  .Container {
+    width: 70vw;
+    margin-left: 15vw;
+  }
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
-td, th {
-    padding: 8px;
+td,
+th {
+  padding: 8px;
 }
 
 .Wrong {
-    background: red;
+  background: red;
 }
 
 .Ok {
-    background: yellow;
+  background: yellow;
 }
 
 .Correct {
-    background: chartreuse;
+  background: chartreuse;
 }
 
 .Selected {
-    text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
 .Menu > button {
-    background-image: linear-gradient(to bottom right, green, yellow);
-    outline: none;
-    border: none;
-    padding: 16px;
-    font-weight: bolder;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    cursor: pointer;
+  background-image: linear-gradient(to bottom right, green, yellow);
+  outline: none;
+  border: none;
+  padding: 16px;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .Menu > button:hover {
-    background-image: linear-gradient(to bottom right, yellow, green);
+  background-image: linear-gradient(to bottom right, yellow, green);
 }
 
 .Menu {
-    display: flex;
+  display: flex;
 }
 
 .PicksMenu {
-    display: flex;
-    margin-top: 12px;
-    margin-bottom: 12px;
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .PicksMenu > button {
-    background-image: linear-gradient(to bottom right, aqua, mediumorchid);
-    outline: none;
-    border: none;
-    padding: 16px;
-    font-weight: bolder;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    cursor: pointer;
+  background-image: linear-gradient(to bottom right, aqua, mediumorchid);
+  outline: none;
+  border: none;
+  padding: 16px;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .PicksMenu > button:hover {
-    background-image: linear-gradient(to bottom right, mediumorchid, aqua);
+  background-image: linear-gradient(to bottom right, mediumorchid, aqua);
 }
 
 .Save {
-    margin-top: 12px;
-    background-image: linear-gradient(to bottom right, navy, orangered);
-    outline: none;
-    border: none;
-    padding: 16px;
-    font-weight: bolder;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
+  margin-top: 12px;
+  background-image: linear-gradient(to bottom right, navy, orangered);
+  outline: none;
+  border: none;
+  padding: 16px;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
 }
 
 .Save:hover {
-    background-image: linear-gradient(to bottom right, orangered, navy);
-
+  background-image: linear-gradient(to bottom right, orangered, navy);
 }

@@ -157,17 +157,14 @@ export default function Picks() {
 
   const submit = async () => {
     try {
-      await db
-        .collection("picks-2021")
-        .doc(auth.currentUser.uid)
-        .set(
-          {
-            picks: picks,
-            name: auth.currentUser.displayName,
-            updated: new Date(),
-          },
-          { merge: true }
-        );
+      await db.collection("picks-2021").doc(auth.currentUser.uid).set(
+        {
+          picks: picks,
+          name: auth.currentUser.displayName,
+          updated: new Date(),
+        },
+        { merge: true }
+      );
       showSavedIcon();
     } catch (e) {
       console.debug(e);
